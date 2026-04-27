@@ -1,5 +1,5 @@
+cat > modules/encoder.py << 'EOF'
 import base64
-import urllib.parse
 
 class EncoderTools:
     @staticmethod
@@ -9,15 +9,13 @@ class EncoderTools:
         choice = input("Pilih: ")
         if choice == '1':
             result = base64.b64encode(text.encode()).decode()
-            print(f"\n✅ Encode Base64: {result}")
+            print(f"\n\033[92m✅ Encode Base64: {result}\033[0m")
         elif choice == '2':
             try:
                 result = base64.b64decode(text).decode()
-                print(f"\n✅ Decode Base64: {result}")
+                print(f"\n\033[92m✅ Decode Base64: {result}\033[0m")
             except:
-                print("❌ Invalid Base64!")
-        else:
-            print("❌ Pilihan salah!")
+                print("\n\033[91m❌ Invalid Base64!\033[0m")
     
     @staticmethod
     def hex_convert(text):
@@ -26,15 +24,13 @@ class EncoderTools:
         choice = input("Pilih: ")
         if choice == '1':
             result = text.encode().hex()
-            print(f"\n✅ Hex: {result}")
+            print(f"\n\033[92m✅ Hex: {result}\033[0m")
         elif choice == '2':
             try:
                 result = bytes.fromhex(text).decode()
-                print(f"\n✅ Decoded: {result}")
+                print(f"\n\033[92m✅ Decoded: {result}\033[0m")
             except:
-                print("❌ Invalid Hex!")
-        else:
-            print("❌ Pilihan salah!")
+                print("\n\033[91m❌ Invalid Hex!\033[0m")
     
     @staticmethod
     def rot13_convert(text):
@@ -42,36 +38,5 @@ class EncoderTools:
             'ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz',
             'NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm'
         ))
-        print(f"\n✅ ROT13: {result}")
-    
-    @staticmethod
-    def url_convert(text):
-        print("\n[1] URL Encode")
-        print("[2] URL Decode")
-        choice = input("Pilih: ")
-        if choice == '1':
-            result = urllib.parse.quote(text)
-            print(f"\n✅ URL Encode: {result}")
-        elif choice == '2':
-            result = urllib.parse.unquote(text)
-            print(f"\n✅ URL Decode: {result}")
-        else:
-            print("❌ Pilihan salah!")
-    
-    @staticmethod
-    def binary_convert(text):
-        print("\n[1] Text to Binary")
-        print("[2] Binary to Text")
-        choice = input("Pilih: ")
-        if choice == '1':
-            result = ' '.join(format(ord(c), '08b') for c in text)
-            print(f"\n✅ Binary: {result}")
-        elif choice == '2':
-            try:
-                binary_values = text.split()
-                result = ''.join(chr(int(bv, 2)) for bv in binary_values)
-                print(f"\n✅ Text: {result}")
-            except:
-                print("❌ Invalid Binary!")
-        else:
-            print("❌ Pilihan salah!")
+        print(f"\n\033[92m✅ ROT13: {result}\033[0m")
+EOF
