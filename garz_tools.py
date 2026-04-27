@@ -1,64 +1,64 @@
+cat > garz_tools.py << 'EOF'
 #!/usr/bin/env python3
-# Garz Cyber Tools - Ultimate Edition
-# Author: Garz Cyber Security
+# Garz Cyber Tools v3.0 - Termux Edition
 
 import os
 import sys
 import time
 import platform
-from modules.hasher import HashTools
-from modules.encoder import EncoderTools
-from modules.password_checker import PasswordTools
-from modules.crypto_tools import CryptoTools
-from modules.network_tools import NetworkTools
-from modules.osint_tools import OsintTools
 
 def clear_screen():
-    os.system('cls' if platform.system() == 'Windows' else 'clear')
+    os.system('clear')
 
 def banner():
-    print("""
-    ╔══════════════════════════════════════════════════════════╗
-    ║                                                          ║
-    ║   🔥  GARZ CYBER TOOLS v2.0 - ULTIMATE EDITION  🔥      ║
-    ║                                                          ║
-    ║   [*] Password Cracker    [*] Hash Generator           ║
-    ║   [*] Encoder/Decoder      [*] Network Scanner         ║
-    ║   [*] OSINT Tools          [*] Crypto Tools            ║
-    ║                                                          ║
-    ╚══════════════════════════════════════════════════════════╝
-    """)
+    print("\033[91m")
+    print("╔════════════════════════════════════════════════════════════════╗")
+    print("║                                                                ║")
+    print("║   ██████╗  █████╗ ██████╗ ███████╗                            ║")
+    print("║   ██╔════╝ ██╔══██╗██╔══██╗╚══███╔╝                            ║")
+    print("║   ██║  ███╗███████║██████╔╝  ███╔╝                             ║")
+    print("║   ██║   ██║██╔══██║██╔══██╗ ███╔╝                              ║")
+    print("║   ╚██████╔╝██║  ██║██║  ██║███████╗                            ║")
+    print("║    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝                            ║")
+    print("║                                                                ║")
+    print("║   🔥 GARZ CYBER TOOLS v3.0 - TERMUX EDITION 🔥                ║")
+    print("║                                                                ║")
+    print("║   [*] Password Cracker    [*] Hash Generator                  ║")
+    print("║   [*] Encoder/Decoder      [*] Network Scanner                ║")
+    print("║   [*] OSINT Tools          [*] Crypto Tools                   ║")
+    print("║                                                                ║")
+    print("╚════════════════════════════════════════════════════════════════╝")
+    print("\033[0m")
 
 def main_menu():
     while True:
         clear_screen()
         banner()
-        print("""
-    📌 MAIN MENU:
-    ═══════════════════════════════════════════════
-    
-    [1]  🔐 HASH GENERATOR & CRACKER
-    [2]  📝 ENCODE / DECODE (Base64, Hex, ROT13, URL, Binary)
-    [3]  🔒 PASSWORD STRENGTH CHECKER
-    [4]  🗝️  CRYPTOGRAPHY TOOLS (AES, Caesar, XOR)
-    [5]  🌐 NETWORK TOOLS (Port Scanner, Ping Sweep)
-    [6]  🕵️  OSINT TOOLS (IP Info, DNS Lookup, WHOIS)
-    [7]  💣 PASSWORD CRACKER (Brute Force + Wordlist)
-    [8]  🛠️  UTILITIES (Text Analyzer, Password Generator)
-    [9]  🚪 EXIT
-    
-    ═══════════════════════════════════════════════
-        """)
+        print("\n\033[93m📌 MAIN MENU:\033[0m")
+        print("════════════════════════════════════════════════════════════════")
+        print("")
+        print("  \033[92m[1]\033[0m  🔐 HASH GENERATOR & CRACKER")
+        print("  \033[92m[2]\033[0m  📝 ENCODE / DECODE")
+        print("  \033[92m[3]\033[0m  🔒 PASSWORD STRENGTH CHECKER")
+        print("  \033[92m[4]\033[0m  🗝️  CRYPTOGRAPHY TOOLS (Caesar, XOR)")
+        print("  \033[92m[5]\033[0m  🌐 NETWORK TOOLS")
+        print("  \033[92m[6]\033[0m  🕵️  OSINT TOOLS")
+        print("  \033[92m[7]\033[0m  💣 PASSWORD CRACKER")
+        print("  \033[92m[8]\033[0m  🛠️  UTILITIES")
+        print("  \033[92m[9]\033[0m  🚪 EXIT")
+        print("")
+        print("════════════════════════════════════════════════════════════════")
         
-        choice = input("⚡ Pilih menu (1-9): ")
+        choice = input("\n\033[96m⚡ Pilih menu (1-9): \033[0m")
         
         if choice == '1':
             hash_menu()
         elif choice == '2':
             encode_menu()
         elif choice == '3':
+            from modules.password_checker import PasswordTools
             PasswordTools.password_checker()
-            input("\nTekan Enter...")
+            input("\n\033[93mTekan Enter...\033[0m")
         elif choice == '4':
             crypto_menu()
         elif choice == '5':
@@ -66,50 +66,46 @@ def main_menu():
         elif choice == '6':
             osint_menu()
         elif choice == '7':
+            from modules.password_checker import PasswordTools
             PasswordTools.password_cracker()
-            input("\nTekan Enter...")
+            input("\n\033[93mTekan Enter...\033[0m")
         elif choice == '8':
             utilities_menu()
         elif choice == '9':
-            print("\n👋 Terima kasih menggunakan Garz Cyber Tools!")
+            print("\n\033[92m👋 Terima kasih telah menggunakan Garz Cyber Tools!\033[0m")
             sys.exit()
         else:
-            print("❌ Pilihan tidak valid!")
+            print("\n\033[91m❌ Pilihan tidak valid!\033[0m")
             time.sleep(1)
 
 def hash_menu():
+    from modules.hasher import HashTools
     clear_screen()
-    print("\n🔐 HASH GENERATOR & CRACKER\n")
-    print("[1] Generate Hash (MD5, SHA1, SHA256, SHA512)")
-    print("[2] Cek Hash (Crack dengan Wordlist)")
-    print("[3] Hash File (MD5/SHA256)")
-    print("[4] Kembali")
+    print("\n\033[93m🔐 HASH GENERATOR & CRACKER\033[0m\n")
+    print("[1] Generate Hash (MD5, SHA1, SHA256)")
+    print("[2] Hash File")
+    print("[3] Kembali")
     
-    choice = input("\nPilih: ")
+    choice = input("\n\033[96mPilih: \033[0m")
     if choice == '1':
         text = input("Masukkan teks: ")
         HashTools.generate_hash(text)
     elif choice == '2':
-        target_hash = input("Masukkan hash target: ")
-        wordlist = input("Path wordlist (default: wordlist.txt): ") or "wordlist.txt"
-        HashTools.crack_hash(target_hash, wordlist)
-    elif choice == '3':
         filepath = input("Path file: ")
         HashTools.hash_file(filepath)
-    input("\nTekan Enter...")
+    input("\n\033[93mTekan Enter...\033[0m")
 
 def encode_menu():
+    from modules.encoder import EncoderTools
     clear_screen()
-    print("\n📝 ENCODE / DECODE TOOLS\n")
+    print("\n\033[93m📝 ENCODE / DECODE TOOLS\033[0m\n")
     print("[1] Base64 Encode/Decode")
     print("[2] Hex Encode/Decode")
-    print("[3] ROT13 Encode/Decode")
-    print("[4] URL Encode/Decode")
-    print("[5] Binary Encode/Decode")
-    print("[6] Kembali")
+    print("[3] ROT13")
+    print("[4] Kembali")
     
-    choice = input("\nPilih: ")
-    if choice == '6':
+    choice = input("\n\033[96mPilih: \033[0m")
+    if choice == '4':
         return
     
     text = input("Masukkan teks: ")
@@ -120,25 +116,19 @@ def encode_menu():
         EncoderTools.hex_convert(text)
     elif choice == '3':
         EncoderTools.rot13_convert(text)
-    elif choice == '4':
-        EncoderTools.url_convert(text)
-    elif choice == '5':
-        EncoderTools.binary_convert(text)
-    else:
-        print("❌ Pilihan salah!")
     
-    input("\nTekan Enter...")
+    input("\n\033[93mTekan Enter...\033[0m")
 
 def crypto_menu():
+    from modules.crypto_tools import CryptoTools
     clear_screen()
-    print("\n🗝️ CRYPTOGRAPHY TOOLS\n")
+    print("\n\033[93m🗝️ CRYPTOGRAPHY TOOLS\033[0m\n")
     print("[1] Caesar Cipher")
     print("[2] XOR Cipher")
-    print("[3] AES Encrypt/Decrypt")
-    print("[4] Kembali")
+    print("[3] Kembali")
     
-    choice = input("\nPilih: ")
-    if choice == '4':
+    choice = input("\n\033[96mPilih: \033[0m")
+    if choice == '3':
         return
     
     if choice == '1':
@@ -149,74 +139,55 @@ def crypto_menu():
         text = input("Teks: ")
         key = input("Key: ")
         CryptoTools.xor_cipher(text, key)
-    elif choice == '3':
-        text = input("Teks: ")
-        key = input("Key (16/24/32 chars): ")
-        CryptoTools.aes_crypto(text, key)
-    else:
-        print("❌ Pilihan salah!")
     
-    input("\nTekan Enter...")
+    input("\n\033[93mTekan Enter...\033[0m")
 
 def network_menu():
+    from modules.network_tools import NetworkTools
     clear_screen()
-    print("\n🌐 NETWORK TOOLS\n")
+    print("\n\033[93m🌐 NETWORK TOOLS\033[0m\n")
     print("[1] Port Scanner")
-    print("[2] Ping Sweep")
-    print("[3] GET IP Info")
-    print("[4] Kembali")
+    print("[2] IP Info")
+    print("[3] Kembali")
     
-    choice = input("\nPilih: ")
-    if choice == '4':
+    choice = input("\n\033[96mPilih: \033[0m")
+    if choice == '3':
         return
     
     if choice == '1':
         target = input("Target IP/Domain: ")
         NetworkTools.port_scanner(target)
     elif choice == '2':
-        network = input("Network (contoh: 192.168.1): ")
-        NetworkTools.ping_sweep(network)
-    elif choice == '3':
         target = input("IP/Domain: ")
         NetworkTools.get_ip_info(target)
-    else:
-        print("❌ Pilihan salah!")
     
-    input("\nTekan Enter...")
+    input("\n\033[93mTekan Enter...\033[0m")
 
 def osint_menu():
+    from modules.osint_tools import OsintTools
     clear_screen()
-    print("\n🕵️ OSINT TOOLS\n")
+    print("\n\033[93m🕵️ OSINT TOOLS\033[0m\n")
     print("[1] DNS Lookup")
-    print("[2] WHOIS Lookup")
-    print("[3] Subdomain Finder")
-    print("[4] Kembali")
+    print("[2] Kembali")
     
-    choice = input("\nPilih: ")
-    if choice == '4':
+    choice = input("\n\033[96mPilih: \033[0m")
+    if choice == '2':
         return
     
     domain = input("Domain target: ")
     
     if choice == '1':
         OsintTools.dns_lookup(domain)
-    elif choice == '2':
-        OsintTools.whois_lookup(domain)
-    elif choice == '3':
-        OsintTools.find_subdomains(domain)
-    else:
-        print("❌ Pilihan salah!")
-    
-    input("\nTekan Enter...")
 
 def utilities_menu():
+    from modules.password_checker import PasswordTools
     clear_screen()
-    print("\n🛠️ UTILITIES\n")
+    print("\n\033[93m🛠️ UTILITIES\033[0m\n")
     print("[1] Text Analyzer")
     print("[2] Random Password Generator")
     print("[3] Kembali")
     
-    choice = input("\nPilih: ")
+    choice = input("\n\033[96mPilih: \033[0m")
     if choice == '1':
         text = input("Masukkan teks: ")
         PasswordTools.text_analyzer(text)
@@ -226,11 +197,12 @@ def utilities_menu():
     else:
         return
     
-    input("\nTekan Enter...")
+    input("\n\033[93mTekan Enter...\033[0m")
 
 if __name__ == "__main__":
     try:
         main_menu()
     except KeyboardInterrupt:
-        print("\n\n👋 Terima kasih!")
+        print("\n\n\033[92m👋 Terima kasih!\033[0m")
         sys.exit()
+EOF
