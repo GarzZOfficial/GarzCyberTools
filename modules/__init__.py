@@ -1,4 +1,4 @@
-# Modules Init File
+cat > modules/__init__.py << 'EOF'
 from .hasher import HashTools
 from .encoder import EncoderTools
 from .password_checker import PasswordTools
@@ -8,3 +8,4 @@ from .osint_tools import OsintTools
 
 __all__ = ['HashTools', 'EncoderTools', 'PasswordTools', 
            'CryptoTools', 'NetworkTools', 'OsintTools']
+EOF
