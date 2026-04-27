@@ -1,3 +1,4 @@
+cat > modules/password_checker.py << 'EOF'
 import random
 import string
 import time
@@ -5,7 +6,7 @@ import time
 class PasswordTools:
     @staticmethod
     def password_checker():
-        pwd = input("\n🔐 Masukkan password: ")
+        pwd = input("\n\033[96m🔐 Masukkan password: \033[0m")
         length = len(pwd)
         has_upper = any(c.isupper() for c in pwd)
         has_lower = any(c.islower() for c in pwd)
@@ -43,7 +44,7 @@ class PasswordTools:
             feedback.append("❌ Tambahkan karakter khusus (!@#$%^&*)")
         
         print("\n" + "="*50)
-        print("🔍 ANALISIS PASSWORD:")
+        print("\033[93m🔍 ANALISIS PASSWORD:\033[0m")
         print("="*50)
         for f in feedback:
             print(f)
@@ -63,13 +64,12 @@ class PasswordTools:
     
     @staticmethod
     def password_cracker():
-        print("\n💣 PASSWORD CRACKER (Brute Force Demo)")
+        print("\n\033[93m💣 PASSWORD CRACKER (Brute Force Demo)\033[0m")
         print("="*40)
-        target = input("Target password (demo): ")
-        print("\n🔍 Memulai brute force...")
+        target = input("\033[96mTarget password (demo): \033[0m")
         
         chars = string.ascii_lowercase + string.digits
-        max_length = 4  # Batasi untuk demo
+        max_length = 4
         
         start_time = time.time()
         attempts = 0
@@ -82,13 +82,13 @@ class PasswordTools:
                 
                 if guess == target:
                     elapsed = time.time() - start_time
-                    print(f"\n\n✅ PASSWORD DITEMUKAN!")
+                    print(f"\n\n\033[92m✅ PASSWORD DITEMUKAN!\033[0m")
                     print(f"Password: {guess}")
                     print(f"Attempts: {attempts}")
                     print(f"Waktu: {elapsed:.2f} detik")
                     return
         
-        print("\n❌ Password tidak ditemukan dalam batas yang ditentukan!")
+        print("\n\033[91m❌ Password tidak ditemukan!\033[0m")
     
     @staticmethod
     def _generate_combinations(chars, length):
@@ -101,7 +101,7 @@ class PasswordTools:
     
     @staticmethod
     def text_analyzer(text):
-        print("\n📊 TEXT ANALYZER")
+        print("\n\033[93m📊 TEXT ANALYZER\033[0m")
         print("="*40)
         print(f"📝 Teks: {text[:100]}{'...' if len(text) > 100 else ''}")
         print(f"📏 Panjang: {len(text)} karakter")
@@ -110,34 +110,10 @@ class PasswordTools:
         print(f"🔡 Huruf: {sum(c.isalpha() for c in text)}")
         print(f"✨ Huruf besar: {sum(c.isupper() for c in text)}")
         print(f"🔽 Huruf kecil: {sum(c.islower() for c in text)}")
-        print(f"💢 Spasi: {text.count(' ')}")
-        print(f"🔣 Karakter khusus: {sum(not c.isalnum() and not c.isspace() for c in text)}")
     
     @staticmethod
     def generate_password(length=12):
         chars = string.ascii_letters + string.digits + "!@#$%^&*"
         password = ''.join(random.choice(chars) for _ in range(length))
-        print(f"\n✅ Password generated: {password}")
-        print(f"💪 Kekuatan: ", end="")
-        PasswordTools.password_checker_quick(password)
-    
-    @staticmethod
-    def password_checker_quick(pwd):
-        score = 0
-        if len(pwd) >= 8:
-            score += 1
-        if len(pwd) >= 12:
-            score += 1
-        if any(c.isupper() for c in pwd) and any(c.islower() for c in pwd):
-            score += 1
-        if any(c.isdigit() for c in pwd):
-            score += 1
-        if any(not c.isalnum() for c in pwd):
-            score += 1
-        
-        if score <= 2:
-            print("LEMAH ❌")
-        elif score <= 4:
-            print("SEDANG ⚠️")
-        else:
-            print("KUAT ✅")
+        print(f"\n\033[92m✅ Password generated: {password}\033[0m")
+EOF
